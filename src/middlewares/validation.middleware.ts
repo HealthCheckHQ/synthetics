@@ -20,13 +20,13 @@ export const ValidationMiddleware = (type: any, skipMissingProperties = false, w
         next();
       })
       .catch((errors: ValidationError[]) => {
-        let message = ''
+        let message = '';
         try {
           message = errors.map((error: ValidationError) => Object.values(error.constraints)).join(', ');
         } catch (error) {
           message = errors.map((error: ValidationError) => error.toString()).join(',');
         }
-       
+
         next(new HttpException(400, message));
       });
   };

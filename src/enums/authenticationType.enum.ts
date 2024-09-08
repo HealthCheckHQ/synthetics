@@ -1,4 +1,4 @@
-export enum AuthenticationType{
+export enum AuthenticationType {
   NONE = 'NONE',
   BEARER = 'BEARER',
   BASIC = 'BASIC',

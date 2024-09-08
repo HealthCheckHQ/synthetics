@@ -1,17 +1,16 @@
-export class CheckOriginResponse{
+export class CheckOriginResponse {
   success: boolean;
   timeElapsed: number;
-  successResponse? : SuccessResponse;
-  failureResponse? : FailureResponse;
-  
+  successResponse?: SuccessResponse;
+  failureResponse?: FailureResponse;
 }
 
-export class SuccessResponse{
+export class SuccessResponse {
   statusCode: number;
   headers: any;
   body: any;
 }
 
-export class FailureResponse{
+export class FailureResponse {
   errorMessage: string;
 }

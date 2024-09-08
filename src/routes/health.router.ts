@@ -12,7 +12,7 @@ export class HealthRoute implements Routes {
   }
 
   private initializeRoutes() {
-    this.router.get('/health', AuthMiddleware ,this.healthCheckController.validatedHealthCheck);
-    this.router.get('/' ,this.healthCheckController.healthCheck);
+    this.router.get('/health', AuthMiddleware, this.healthCheckController.validatedHealthCheck);
+    this.router.get('/', this.healthCheckController.healthCheck);
   }
 }
