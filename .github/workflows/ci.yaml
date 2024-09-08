@@ -1,4 +1,4 @@
-name: Merge to develop when PR raised on main
+name: CI when PR is raised
 
 on:
   pull_request:

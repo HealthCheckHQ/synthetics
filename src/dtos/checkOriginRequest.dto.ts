@@ -1,11 +1,11 @@
 import { AuthenticationType } from '@/enums/authenticationType.enum';
 import { RequestType } from '@enums/requestType.enum';
-import { IsEnum, IsObject, ValidateNested, IsUrl, IsBoolean, IsOptional, IsNumber, Min, Max } from 'class-validator';
+import { IsEnum, IsObject, IsUrl, IsBoolean, IsOptional, IsNumber, Min, Max } from 'class-validator';
 
 export class CheckOriginRequest {
   @IsEnum(RequestType)
   public requestType: RequestType;
-  
+
   @IsUrl()
   public url: string;
 
@@ -39,5 +39,4 @@ export class CheckOriginRequest {
 
   @IsOptional()
   public password?: string;
-
 }

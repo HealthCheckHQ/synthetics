@@ -13,15 +13,15 @@ describe('TEST Health Check API', () => {
 
   describe('[GET] /', () => {
     it('response should have response ok', async () => {
-      const response =  await request(app.getServer()).get('/');
-      expect(response.body.status).toEqual('OK')
+      const response = await request(app.getServer()).get('/');
+      expect(response.body.status).toEqual('OK');
     });
   });
 
   describe('[GET] /health', () => {
     it('response should have the Create userData', async () => {
-      const response =  await request(app.getServer()).get('/health').set(SYNTHETICS_CONFIG.apiAuthKey, SYNTHETICS_CONFIG.apiAuthValue);
-      expect(response.body.status).toEqual('OK')
+      const response = await request(app.getServer()).get('/health').set(SYNTHETICS_CONFIG.apiAuthKey, SYNTHETICS_CONFIG.apiAuthValue);
+      expect(response.body.status).toEqual('OK');
     });
   });
 });
