@@ -1,6 +1,8 @@
 export class CheckOriginResponse {
   success: boolean;
   timeElapsed: number;
+  startTime: string;
+  endTime: string;
   successResponse?: SuccessResponse;
   failureResponse?: FailureResponse;
 }
