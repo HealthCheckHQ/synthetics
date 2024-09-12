@@ -18,26 +18,91 @@ Synthetics uses GitHub to manage reviews of pull requests.
 
 ## Steps to Contribute
 
-Should you wish to work on an issue, please claim it first by commenting on the GitHub issue that you want to work on it. This is to prevent duplicated efforts from contributors on the same issue.
+## 🚀 Getting Started
 
-If you have questions about one of the issues, with or without the tag, please comment on them and one of the maintainers will clarify it.
+### 🔖 Prerequisites
 
+**TypeScript**: `version >4.7.4`
 
-For quickly compiling and testing your changes do:
+### 📦 Installation
 
-```bash
-# For building.
-npm i
-npm run dev
+Build the project from source:
 
-# For testing.
-npm run test         # Make sure all the tests pass before you commit and push :)
+1. Clone the synthetics repository:
+```sh
+❯ git clone https://github.com/HealthCheckHQ/synthetics
 ```
 
-To run a collection of TS linters through do:
-```bash
-make lint
+2. Navigate to the project directory:
+```sh
+❯ cd synthetics
 ```
+
+3. Install the required dependencies:
+```sh
+❯ npm install
+```
+
+### 🤖 Usage
+
+To run the project, execute the following command:
+
+#### During Development
+
+```sh
+❯ npm run build && node dist/main.js
+```
+
+#### Verify the final Prod run before raising PR
+
+```sh
+❯ npm run build && npm start
+```
+
+### 🧪 Tests
+
+Execute the test suite using the following command:
+
+```sh
+❯ npm test
+```
+
+---
+
+## 🤝 Contributing
+
+Contributions are welcome! Here are several ways you can contribute:
+
+- **[Report Issues](https://github.com/HealthCheckHQ/synthetics/issues)**: Submit bugs found or log feature requests for the `synthetics` project.
+- **[Submit Pull Requests](https://github.com/HealthCheckHQ/synthetics/blob/main/CONTRIBUTING.md)**: Review open PRs, and submit your own PRs.
+- **[Join the Discussions](https://github.com/HealthCheckHQ/synthetics/discussions)**: Share your insights, provide feedback, or ask questions.
+
+<details closed>
+<summary>Contributing Guidelines</summary>
+
+1. **Fork the Repository**: Start by forking the project repository to your github account.
+2. **Clone Locally**: Clone the forked repository to your local machine using a git client.
+   ```sh
+   git clone https://github.com/HealthCheckHQ/synthetics
+   ```
+3. **Create a New Branch**: Always work on a new branch, giving it a descriptive name.
+   ```sh
+   git checkout -b new-feature-x
+   ```
+4. **Make Your Changes**: Develop and test your changes locally.
+5. **Commit Your Changes**: Commit with a clear message describing your updates.
+   ```sh
+   git commit -m 'Implemented new feature x.'
+   ```
+6. **Push to github**: Push the changes to your forked repository.
+   ```sh
+   git push origin new-feature-x
+   ```
+7. **Submit a Pull Request**: Create a PR against the original project repository. Clearly describe the changes and their motivations.
+8. **Review**: Once your PR is reviewed and approved, it will be merged into the main branch. Congratulations on your contribution!
+</details>
+
+<details closed>
 
 
 ## Pull Request Checklist
