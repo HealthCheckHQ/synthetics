@@ -50,6 +50,9 @@
     - [Before you begin](#before-you-begin)
     - [Run the latest stable version of Synthetics](#run-the-latest-stable-version-of-synthetics)
     - [Stop the Synthetics container](#stop-the-synthetics-container)
+- [Configure a Synthetics Docker image](#configure-a-synthetics-docker-image)
+  - [Run a specific version of Synthetics](#run-a-specific-version-of-synthetics)
+  - [Default Environment Variable](#default-environment-variable)
 - [📌 Project Roadmap](#-project-roadmap)
 - [🤝 Contributing](#-contributing)
 - [🎗 License](#-license)
@@ -188,6 +191,41 @@ docker compose down
 ```
 
 ---
+
+## Configure a Synthetics Docker image
+This topic explains how to run Grafana on Docker in complex environments that require you to:
+ - Use different images
+ - Define secrets on the Cloud
+
+### Run a specific version of Synthetics
+To run a specific version of Synthetics, add it in the command section:
+
+```bash
+docker run -d -p 3000:3000 --name synthetics avneesh001/synthetics:<version number>
+```
+
+Example:
+
+The following command runs the Synthetics container and specifies version 1.1.0. If you want to run a different version, modify the version number section.
+
+```bash
+docker run -d -p 3000:3000 --name synthetics avneesh001/synthetics:1.1.0
+```
+
+### Default Environment Variable
+Synthetics comes with default configuration parameters that remain the same among versions regardless of the operating system or the environment (for example, Docker, Kubernetes, etc.). 
+
+The following configurations are set by default when you start the Synthetics Docker container. You can modify the configuration using environment variables.
+
+| ENV_KEY       	| ENV_DESCRIPTION                                                                            	| ENV Default Value                           	|
+|---------------	|--------------------------------------------------------------------------------------------	|---------------------------------------------	|
+| PORT          	| Defines the port on which the server listens for incoming requests.                        	| 3000                                        	|
+| SECRET_KEY    	| A secret key used for signing and verifying tokens                                         	| Required (replace with your own secret key) 	|
+| ORIGIN        	| Specifies the allowed origin for Cross-Origin Resource Sharing (CORS) requests.            	| your.domain.com                             	|
+| CREDENTIALS   	| Enables sending of credentials (cookies, authorization headers) in CORS requests.          	| true                                        	|
+| API_KEY       	| This is the headers key that will be sent via sentinel for server to server authentication 	| SENTINEL_AUTH_KEY                           	|
+| API_KEY_VALUE 	| This is the value that will be set in value for the headers against the key                	| bd39004d-e21d-4a0b-ab93-eafa4d27de2e        	|
+
 
 ## 📌 Project Roadmap
 
