@@ -1,10 +1,10 @@
-import axios from 'axios';
 import { Service } from 'typedi';
 import { HttpException } from '@exceptions/httpException';
 import { CheckOriginRequest } from '@/dtos/checkOriginRequest.dto';
 import { AuthenticationType } from '@/enums/authenticationType.enum';
 import { CheckOriginResponse } from '@/dtos/checkOriginResponse.dto';
 import { SYNTHETICS_CONFIG } from '@/config';
+import got from 'got';
 
 @Service()
 export class ProbeOriginService {
@@ -26,20 +26,18 @@ export class ProbeOriginService {
     }
     const startTime = Date.now();
     try {
-      const response = await axios({
+      const response = await got({
         url: requestUrl,
-        method: originRequest.requestType,
+        method: originRequest.requestType as any,
         headers: {
           ...originRequest.headers,
           'User-Agent': `HealthcheckHQ/synthetic/${location || SYNTHETICS_CONFIG.location || 'default'}`,
           ...(originRequest.authentication === AuthenticationType.BEARER && { Authorization: `Bearer ${originRequest.token}` }),
         },
-        data: originRequest.body,
+        body: originRequest.body as any,
         timeout: originRequest.timeout,
         maxRedirects: originRequest.followRedirect ? 10 : 0,
-        auth: {
-          ...(originRequest.authentication === AuthenticationType.BEARER && { username: originRequest.userName, password: originRequest.password }),
-        },
+        ...(originRequest.authentication === AuthenticationType.BASIC && { username: originRequest.userName, password: originRequest.password }),
       });
       const endTime = Date.now();
       return {
@@ -47,7 +45,7 @@ export class ProbeOriginService {
         startTime: new Date(startTime).toISOString(),
         endTime: new Date(endTime).toISOString(),
         timeElapsed: endTime - startTime,
-        successResponse: { statusCode: response.status, headers: response.headers, body: response.data },
+        successResponse: { statusCode: response.statusCode, headers: response.headers, body: response.body, timings: response.timings },
       };
     } catch (error) {
       const endTime = Date.now();
@@ -57,7 +55,7 @@ export class ProbeOriginService {
           timeElapsed: endTime - startTime,
           startTime: new Date(startTime).toISOString(),
           endTime: new Date(endTime).toISOString(),
-          successResponse: { statusCode: error.response.status, headers: error.response.headers, body: error.response.data },
+          successResponse: { statusCode: error.response.statusCode, headers: error.response.headers, body: error.response.body },
         };
       } else if (error.request) {
         return {

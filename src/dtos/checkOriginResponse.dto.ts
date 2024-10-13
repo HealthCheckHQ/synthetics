@@ -11,6 +11,7 @@ export class SuccessResponse {
   statusCode: number;
   headers: any;
   body: any;
+  timings?: any;
 }
 
 export class FailureResponse {
