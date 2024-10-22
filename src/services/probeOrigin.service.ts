@@ -55,7 +55,12 @@ export class ProbeOriginService {
           timeElapsed: endTime - startTime,
           startTime: new Date(startTime).toISOString(),
           endTime: new Date(endTime).toISOString(),
-          successResponse: { statusCode: error.response.statusCode, headers: error.response.headers, body: error.response.body },
+          successResponse: {
+            statusCode: error.response.statusCode,
+            headers: error.response.headers,
+            body: error.response.body,
+            timings: error.timings,
+          },
         };
       } else if (error.request) {
         return {
@@ -63,7 +68,7 @@ export class ProbeOriginService {
           timeElapsed: endTime - startTime,
           startTime: new Date(startTime).toISOString(),
           endTime: new Date(endTime).toISOString(),
-          failureResponse: { errorMessage: `Request was initialzed but no response was received: ${error.message}` },
+          failureResponse: { errorMessage: `Request was initialzed but no response was received: ${error.message}`, timings: error.timings },
         };
       } else {
         return {
@@ -71,7 +76,7 @@ export class ProbeOriginService {
           timeElapsed: endTime - startTime,
           startTime: new Date(startTime).toISOString(),
           endTime: new Date(endTime).toISOString(),
-          failureResponse: { errorMessage: error.message },
+          failureResponse: { errorMessage: error.message, timings: error.timings },
         };
       }
     }
