@@ -34,7 +34,7 @@ export class ProbeOriginService {
           'User-Agent': `HealthcheckHQ/synthetic/${location || SYNTHETICS_CONFIG.location || 'default'}`,
           ...(originRequest.authentication === AuthenticationType.BEARER && { Authorization: `Bearer ${originRequest.token}` }),
         },
-        body: originRequest.body as any,
+        json: originRequest.body,
         timeout: originRequest.timeout,
         maxRedirects: originRequest.followRedirect ? 10 : 0,
         ...(originRequest.authentication === AuthenticationType.BASIC && { username: originRequest.userName, password: originRequest.password }),
