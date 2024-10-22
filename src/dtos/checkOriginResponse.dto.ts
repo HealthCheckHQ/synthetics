@@ -1,3 +1,5 @@
+import { Timings } from '@szmarczak/http-timer';
+
 export class CheckOriginResponse {
   success: boolean;
   timeElapsed: number;
@@ -11,10 +13,10 @@ export class SuccessResponse {
   statusCode: number;
   headers: any;
   body: any;
-  timings?: any;
+  timings?: Timings;
 }
 
 export class FailureResponse {
   errorMessage: string;
-  timings?: any;
+  timings?: Timings;
 }
