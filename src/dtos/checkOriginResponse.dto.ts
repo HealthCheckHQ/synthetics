@@ -16,4 +16,5 @@ export class SuccessResponse {
 
 export class FailureResponse {
   errorMessage: string;
+  timings?: any;
 }
